@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Lista de usuarios</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%- include('../partials/head.ejs') %> 
+</head>
+<body>
+    
+    <%- include('../partials/header.ejs') %> 
+
+        <main> 
+    
+        <section class="section-home">
+            
+        <% users.forEach(users => { %>
+            <a class="tarjeta" href="/users/userDetail/<%= users.id %>">
+                <article class="articulo-destacado">
+                    <img class="imagen-home" src="/images/users/<%= users.image %> " alt="">
+                    <p class="descripcion"><%= users.name %></p>
+                    <p class="descripcion"><%= users.last_name %></p>
+                    <p class="descripcion"><%= users.email %></p>
+                    <% if (locals.isLogged && locals.userLogged.rol) { %>
+                     <section class="form-products">
+                        <form action="/users/userEdit/<%= users.id %>" method="get">
+                            <button class="boton-detalle" type="submit">Editar</button>
+                        </form>
+                         <form action="/users/delete/<%= users.id %>?_method=delete" method="post">
+                            <button class="boton-detalle" type="submit">Eliminar</button>
+                        </form>
+                    </section>
+                    <% } %> 
+                </article>
+            </a>
+            <% }) %>
+    
+            </section>
+
+        </main>
+
+    <%- include('../partials/footer.ejs') %> 
+    
+</body>
+</html>

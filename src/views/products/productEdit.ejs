@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <%- include('../partials/head.ejs') %> 
+
+<body>
+
+    <%- include('../partials/header.ejs') %> 
+
+    <main class="main-form">
+
+        <section class="sectionLogin">
+
+            <h1 class="titular-login">Editar</h1>
+
+            <form class="formlogin" action="/products/productEdit/<%=  product.id  %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <img src="/images/products/<%= product.image %>" alt="">
+                <label for="imagen">Imagen</label>
+                <input class="input-producto <%= locals.errors && errors.imagen ? 'is-invalid' : null %>" type="file" name="imagen" id="imagen" value="<%= product.image %>">
+                <p class="imagen"></p>
+                <% if (locals.errors && errors.imagen) { %>
+                    <p class="mensaje-error"><%= errors.imagen.msg %> </p>
+                   <% } %>
+
+                <label for="titulo">Titulo:</label>
+                <input class="input-producto <%= locals.errors && errors.titulo ? 'is-invalid' : null %>" type="text" name="titulo" id="titulo" placeholder="<%= product.name %>" value="<%= product.name %>">
+                <p class="titulo"></p>
+                <% if (locals.errors && errors.titulo) { %>
+                    <p class="mensaje-error"><%= errors.titulo.msg %> </p>
+                   <% } %>
+
+                <label for="descripcion">Descripcion:</label> 
+                <textarea class="input-producto <%= locals.errors && errors.descripcion ? 'is-invalid' : null %>"  name="descripcion" id="descripcion" cols="30" rows="5" placeholder="<%= product.description %>" value="<%= product.description %>" ><%= product.description %></textarea>
+                <p class="description"></p>
+                <% if (locals.errors && errors.descripcion) { %>
+                    <p class="mensaje-error"><%= errors.descripcion.msg %> </p>
+                   <% } %>
+
+                <label for="precio">Precio:</label>
+                <input class="input-producto <%= locals.errors && errors.precio ? 'is-invalid' : null %>" type="number" name="precio" id="precio" placeholder="<%= product.price %>" value="<%= product.price %>">
+                <p class="precio"></p>
+                <% if (locals.errors && errors.precio) { %>
+                    <p class="mensaje-error"><%= errors.precio.msg %> </p>
+                   <% } %>
+
+                <label for="oferta" class="form-label">Producto en oferta:</label>
+                <select name="oferta" id="oferta" class="form-input">
+                    <option value="not">No</option>
+                    <option value="yes">En oferta</option>
+                </select>
+
+                <label for="categoria" class="form-label">Categoría:</label>
+                <select name="categoria" id="categoria" class="form-input">
+                    <option value="1">Criolla</option>
+                    <option value="2">Electroacustica</option>
+                    <option value="3">Electrica</option>
+                </select>
+
+                <Button type="submit" class="button">Editar producto</Button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <%- include('../partials/footer.ejs') %> 
+    <script src="/js/productFront.js"></script>
+</body>
+
+</html>

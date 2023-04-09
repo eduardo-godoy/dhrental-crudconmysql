@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <title>Productos</title> 
+    <%- include('../partials/head.ejs')%> 
+
+<body>
+    
+    <%- include('../partials/header.ejs')%> 
+
+   <main> 
+    
+    <section class="section-home">
+        
+    <% products.forEach(product => { %>
+        <a class="tarjeta" href="./productDetail/<%= product.id %>">
+            <article class="articulo-destacado">
+                <img class="imagen-home" src="/images/products/<%= product.image %> " alt="">
+                <p class="descripcion"><%= product.name %></p>
+                <p class="descripcion">$<%= product.price %></p>
+                <p class="descripcion"><%= product.category.name %></p>
+                <% if (locals.isLogged && locals.userLogged.rol == "admin") { %>    
+                <section class="form-products">
+                <form action="/products/productEdit/<%= product.id %>" method="get">
+                    <button class="boton-detalle" type="submit">Editar</button>
+                </form>
+                 <form action="/products/delete/<%= product.id %>?_method=delete" method="post">
+                    <button class="boton-detalle" type="submit">Eliminar</button>
+                </form>
+                
+            </section>
+            <% } %>
+            
+            </article>
+        </a>
+        <% }) %>
+
+        </section>
+    </main>
+    
+
+    <%- include('../partials/footer.ejs') %> 
+
+</body>
+
+</html>

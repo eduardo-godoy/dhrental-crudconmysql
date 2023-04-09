@@ -1,0 +1,76 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bebas Neue', cursive;
+}
+
+body {
+    background-color: black;
+    width: auto;
+    height: auto;
+}
+
+.img-404 {
+    width: 100%;
+    
+}
+
+.acceso-denegado{
+    background-color: white;
+}
+
+.img-acesso-denegado{
+        position: absolute;
+        bottom: 40%;
+        top: 40%;
+        right: 10%;
+        left: 10%;
+        width: 90%;
+        height: 20%;
+      }
+
+
+
+@media(min-width:480px) {
+
+    .img-acesso-denegado{
+        position: absolute;
+        bottom: 40%;
+        top: 40%;
+        right: 25%;
+        left: 25%;
+        width: 50%;
+        height: 20%;
+    }
+
+    img {
+        display: flex;
+        justify-content: center;
+        align-items: self-start;
+    }
+}
+
+@media(min-width:1024px) {
+
+    .img-acesso-denegado{ position: absolute;
+    bottom: 40%;
+    top: 40%;
+    right: 35%;
+    left: 35%;
+    width: 30%;
+    height: 20%;
+  }
+
+    .img-404{
+        width: auto;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+    }
+}

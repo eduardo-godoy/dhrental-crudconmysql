@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Editar</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <%- include('../partials/head.ejs') %>
+</head>
+<body>
+    <%- include('../partials/header.ejs') %>
+
+
+    <main class="main-form">
+
+        <section class="sectionLogin">
+
+            <h1 class="titular-login">Editar cuenta de: <%= user.name %> </h1>
+
+            <form class="formlogin" action="/users/userEdit/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+
+                <label for="nombre">Nombre:</label>
+                <input class="input-form <%= locals.errors && errors.nombre ? 'is-invalid' : null %>" type="text" name="nombre" placeholder="Fulanito" id="name" value="<%= user.name %>">
+                <p class="name"></p>
+                <% if (locals.errors && errors.nombre) { %>
+                    <p class="mensaje-error"><%= errors.nombre.msg %> </p>
+                   <% } %>
+
+                <label for="apellido">Apellido:</label>
+                <input class="input-form <%= locals.errors && errors.apellido ? 'is-invalid' : null %>" type="text" name="apellido" placeholder="Cosme" id="last_name" value="<%= user.last_name %>">
+                <p class="last_name"></p>
+                <% if (locals.errors && errors.apellido) { %>
+                    <p class="mensaje-error"><%= errors.apellido.msg %> </p>
+                   <% } %>
+
+
+                <label for="email">Email:</label>
+                <input class="input-form <%= locals.errors && errors.email ? 'is-invalid' : null %>" type="email" name="email" placeholder="usuario@gmail.com" id="email" value="<%= user.email %>">
+                <p class="email"></p>
+                <% if (locals.errors && errors.email) { %>
+                    <p class="mensaje-error"><%= errors.email.msg %> </p>
+                   <% } %>
+
+                <label for="contraseña">Contraseña:</label>
+                <input class="input-form <%= locals.errors && errors.password ? 'is-invalid' : null %>" type="password" name="password" id="password">
+                <p class="password"></p>
+                <% if (locals.errors && errors.password) { %>
+                    <p class="mensaje-error"><%= errors.password.msg %> </p>
+                   <% } %>
+
+                <label for="domicilio">Domicilio:</label>
+                <input class="input-form <%= locals.errors && errors.domicilio ? 'is-invalid' : null %>" type="text" name="domicilio" id="adress" value="<%= user.adress %>">
+                <p class="adress"></p>
+                <% if (locals.errors && errors.domicilio) { %>
+                    <p class="mensaje-error"><%= errors.domicilio.msg %> </p>
+                   <% } %>
+
+                <label for="celular">Celular:</label>
+                <input class="input-form <%= locals.errors && errors.celular ? 'is-invalid' : null %>" type="number" name="celular" id="cel" value="<%= user.cell_phone %>">
+                <p class="cel"></p>
+                <% if (locals.errors && errors.celular) { %>
+                    <p class="mensaje-error"><%= errors.celular.msg %> </p>
+                   <% } %>
+
+                <label for="imagen">Avatar:</label>
+                <img src="/images/users/<%= user.image %>" alt="" class="avatar-edit">
+                <input class="input-producto <%= locals.errors && errors.imagen ? 'is-invalid' : null %>" type="file" name="imagen" id="image" value="<%= user.image %>">
+                <p class="image"></p>
+                <% if (locals.errors && errors.imagen) { %>
+                    <p class="mensaje-error"><%= errors.imagen.msg %> </p>
+                   <% } %>
+                   <% if (locals.isLogged && locals.userLogged.rol == "admin") { %>
+                <select name="rol" id="rol" class="input-form2">
+                    <option value="user">Usuario</option>
+                    <option value="admin">Administrador</option>
+                </select>
+                <% } %>
+                <Button type="submit" class="button">Editar</Button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+    <%- include('../partials/footer.ejs') %>
+    <script src = "/js/registerFront.js"></script>
+
+</body>
+</html>
